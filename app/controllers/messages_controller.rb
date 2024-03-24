@@ -8,12 +8,12 @@ class MessagesController < ApplicationController
 
   def create
     @room = Room.find(params[:room_id])
-    @message = aroom.messages.new(message_params)
+    @message = @room.messages.new(message_params)
     if @message.save
-    redirecto_to room_messages_path(@room)
+    redirect_to room_messages_path(@room)
     else
       @messages = @room.messages.includes(:user)
-      render :index, status: unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
